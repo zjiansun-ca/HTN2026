@@ -149,6 +149,13 @@
   .reveal-card-value.state-ok { color: var(--ok-tone); }
   .reveal-card-sub { font-size: 0.75rem; color: var(--text-faint); margin-top: 0.2rem; font-family: var(--font-mono); }
 
+  .gemini-summary {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 0.7rem 0.9rem; margin-bottom: 1rem;
+  }
+  .gemini-summary-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-faint); margin-bottom: 0.3rem; }
+  .gemini-summary-text { font-size: 0.92rem; color: var(--text); line-height: 1.5; }
+
   .contrib-title { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-faint); margin-bottom: 0.6rem; }
   .contrib-row { display: grid; grid-template-columns: 116px 1fr 52px; align-items: center; gap: 0.6rem; margin: 0.4rem 0; }
   .contrib-name { color: var(--text-dim); font-family: var(--font-mono); font-size: 0.78rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -277,6 +284,11 @@
       <div class="reveal-card-label">Actual outcome</div>
       <div class="reveal-card-value" id="rv-outcome"></div>
     </div>
+  </div>
+
+  <div class="gemini-summary hidden" id="rv-gemini-summary">
+    <div class="gemini-summary-label">Plain-language summary — Gemini paraphrase of the factors below</div>
+    <div class="gemini-summary-text" id="rv-gemini-text"></div>
   </div>
 
   <div class="contrib-title">Why Kairos called it this way</div>
@@ -484,9 +496,30 @@ function renderRevealView(reveal) {
   document.getElementById("rv-outcome-detail").textContent = reveal.outcome_detail;
   document.getElementById("rv-verdict").textContent = verdictLine(judgeFlagged, modelFlagged, wasUnderTriaged);
 
+  // bars are the source of truth and render immediately above; the Gemini
+  // sentence is a plain-language extra that pops in above them if/when it
+  // arrives — reveal never waits on it, and nothing shows if it fails
+  document.getElementById("rv-gemini-summary").classList.add("hidden");
+  fetchExplanation(reveal.case_id);
+
   caseView.classList.add("hidden");
   summaryView.classList.add("hidden");
   revealView.classList.remove("hidden");
+}
+
+async function fetchExplanation(caseId) {
+  let data;
+  try {
+    data = await postJSON("/explain", { case_id: caseId });
+  } catch {
+    return; // silent — bars alone remain the reveal
+  }
+  if (!data || !data.explanation) return;
+  // the judge may have already moved to the next case by the time this
+  // resolves — only render if we're still looking at the same reveal
+  if (!currentCase || currentCase.case_id !== caseId) return;
+  document.getElementById("rv-gemini-text").textContent = data.explanation;
+  document.getElementById("rv-gemini-summary").classList.remove("hidden");
 }
 
 function renderSummary() {

@@ -13,7 +13,7 @@ from fastapi import BackgroundTasks, FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
-from backend import db, observability
+from backend import db, explain, observability
 from backend.scoring import _score_case
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -45,6 +45,10 @@ class SubmitRequest(BaseModel):
 class RevealRequest(BaseModel):
     case_id: str
     session_id: str
+
+
+class ExplainRequest(BaseModel):
+    case_id: str
 
 
 @app.post("/next-case")
@@ -108,6 +112,21 @@ def reveal(req: RevealRequest, background_tasks: BackgroundTasks):
         "outcome": case["outcome"],
         "outcome_detail": case["outcome_detail"],
     }
+
+
+@app.post("/explain")
+def explain_reveal(req: ExplainRequest):
+    """Optional plain-language paraphrase of an already-computed flag. Never
+    influences the flag/score (computed in /reveal, independently recomputed
+    here from the same deterministic scorer). Always returns 200 — a disabled
+    key, timeout, or quota error yields explanation: null, never an error."""
+    case = CASES_BY_ID.get(req.case_id)
+    if case is None:
+        raise HTTPException(status_code=404, detail=f"unknown case_id '{req.case_id}'")
+
+    _, _, top_features = _score_case(case)
+    sentence = explain.explain_case(req.case_id, top_features, case["vitals"])
+    return {"case_id": req.case_id, "explanation": sentence}
 
 
 @app.get("/leaderboard")
