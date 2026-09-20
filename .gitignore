@@ -1,0 +1,25 @@
+# --- DUA: raw MIMIC-IV-ED data must never be committed ---
+mimic-iv-ed-2.2/
+data_prep/*.csv
+data_prep/*.csv.gz
+*.csv
+*.csv.gz
+
+# model binary (regenerable from code, not committed) — but small aggregate eval
+# numbers derived from it ARE meant to be committed (README/demo cite them)
+artifacts/flagger.joblib
+artifacts/thresholds.json
+
+# secrets
+.env
+
+# per-case Gemini generation cache (regenerable, not meant to be committed)
+data_prep/.case_cache/
+
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Claude Code session state — not project content
+.claude/

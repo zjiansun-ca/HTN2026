@@ -1,0 +1,10 @@
+{
+  "auc_text_vitals": 0.7861,
+  "auc_vitals_only": 0.6331,
+  "p20_threshold": 0.5858,
+  "n_under_triaged_heldout": 143,
+  "n_caught": 84,
+  "catch_rate": 0.5874,
+  "n_false_positives": 1397,
+  "false_flags_per_catch": 16.63
+}

@@ -1,0 +1,354 @@
+[
+  {
+    "case_id": "under_triaged-01",
+    "presentation": "A 70-year-old woman arrives at the ED with swelling and back pain; vitals are obtained at triage, pain 10/10.",
+    "chief_complaint": "swelling, back, pain",
+    "age": 70,
+    "sex": "F",
+    "vitals": {
+      "temperature": 97.9,
+      "heartrate": 93,
+      "resprate": 17,
+      "o2sat": 99,
+      "sbp": 139,
+      "dbp": 109,
+      "pain": 10
+    },
+    "acuity": 4,
+    "outcome": "admitted",
+    "outcome_detail": "Clinical condition did not improve after the initial visit, leading to hospital admission.",
+    "truth": {
+      "subpopulation": "under_triaged"
+    }
+  },
+  {
+    "case_id": "under_triaged-02",
+    "presentation": "62-year-old man is evaluated at triage for soreness and a recent fall; pain is documented as 4/10.",
+    "chief_complaint": "sore, pain, fall",
+    "age": 62,
+    "sex": "M",
+    "vitals": {
+      "temperature": 97.4,
+      "heartrate": 91,
+      "resprate": 14,
+      "o2sat": 98,
+      "sbp": 105,
+      "dbp": 72,
+      "pain": 4
+    },
+    "acuity": 4,
+    "outcome": "admitted",
+    "outcome_detail": "Clinical condition did not improve after the initial visit, leading to hospital admission.",
+    "truth": {
+      "subpopulation": "under_triaged"
+    }
+  },
+  {
+    "case_id": "under_triaged-03",
+    "presentation": "Triage note: 57-year-old man, back pain and alcohol use. Pain 8/10 on the intake scale.",
+    "chief_complaint": "back, etoh, pain",
+    "age": 57,
+    "sex": "M",
+    "vitals": {
+      "temperature": 97.1,
+      "heartrate": 91,
+      "resprate": 19,
+      "o2sat": 100,
+      "sbp": 142,
+      "dbp": 72,
+      "pain": 8
+    },
+    "acuity": 4,
+    "outcome": "admitted",
+    "outcome_detail": "Was admitted to the inpatient floor for closer monitoring after initial assessment.",
+    "truth": {
+      "subpopulation": "under_triaged"
+    }
+  },
+  {
+    "case_id": "under_triaged-04",
+    "presentation": "A 66-year-old woman arrives at the ED with a recent fall; vitals are obtained at triage, pain 6/10.",
+    "chief_complaint": "fall",
+    "age": 66,
+    "sex": "F",
+    "vitals": {
+      "temperature": 98.6,
+      "heartrate": 80,
+      "resprate": 16,
+      "o2sat": 100,
+      "sbp": 134,
+      "dbp": 90,
+      "pain": 6
+    },
+    "acuity": 5,
+    "outcome": "admitted",
+    "outcome_detail": "Returned to the department later with worsening symptoms and was admitted for further evaluation and monitoring.",
+    "truth": {
+      "subpopulation": "under_triaged"
+    }
+  },
+  {
+    "case_id": "under_triaged-05",
+    "presentation": "77-year-old woman checks in at triage citing hip pain, with a pain score of 5/10.",
+    "chief_complaint": "hip, pain",
+    "age": 77,
+    "sex": "F",
+    "vitals": {
+      "temperature": 99.5,
+      "heartrate": 89,
+      "resprate": 21,
+      "o2sat": 99,
+      "sbp": 144,
+      "dbp": 69,
+      "pain": 5
+    },
+    "acuity": 4,
+    "outcome": "admitted",
+    "outcome_detail": "Clinical condition did not improve after the initial visit, leading to hospital admission.",
+    "truth": {
+      "subpopulation": "under_triaged"
+    }
+  },
+  {
+    "case_id": "under_triaged-06",
+    "presentation": "A 64-year-old woman arrives at the ED with back pain and ear pain; vitals are obtained at triage, pain 2/10.",
+    "chief_complaint": "back, ear",
+    "age": 64,
+    "sex": "F",
+    "vitals": {
+      "temperature": 98.3,
+      "heartrate": 93,
+      "resprate": 15,
+      "o2sat": 98,
+      "sbp": 151,
+      "dbp": 60,
+      "pain": 2
+    },
+    "acuity": 5,
+    "outcome": "admitted",
+    "outcome_detail": "Returned to the department later with worsening symptoms and was admitted for further evaluation and monitoring.",
+    "truth": {
+      "subpopulation": "under_triaged"
+    }
+  },
+  {
+    "case_id": "under_triaged-07",
+    "presentation": "Male patient, age 88, presents with knee pain. Reports pain level 5 out of 10.",
+    "chief_complaint": "knee",
+    "age": 88,
+    "sex": "M",
+    "vitals": {
+      "temperature": 98.9,
+      "heartrate": 95,
+      "resprate": 16,
+      "o2sat": 99,
+      "sbp": 131,
+      "dbp": 84,
+      "pain": 5
+    },
+    "acuity": 4,
+    "outcome": "admitted",
+    "outcome_detail": "Was admitted to the inpatient floor for closer monitoring after initial assessment.",
+    "truth": {
+      "subpopulation": "under_triaged"
+    }
+  },
+  {
+    "case_id": "under_triaged-08",
+    "presentation": "A 57-year-old man arrives at the ED with alcohol use and an injury; vitals are obtained at triage, pain 1/10.",
+    "chief_complaint": "etoh, injury",
+    "age": 57,
+    "sex": "M",
+    "vitals": {
+      "temperature": 97.7,
+      "heartrate": 85,
+      "resprate": 15,
+      "o2sat": 97,
+      "sbp": 124,
+      "dbp": 58,
+      "pain": 1
+    },
+    "acuity": 5,
+    "outcome": "admitted",
+    "outcome_detail": "Follow-up assessment prompted admission for observation and further workup.",
+    "truth": {
+      "subpopulation": "under_triaged"
+    }
+  },
+  {
+    "case_id": "well-01",
+    "presentation": "A 20-year-old woman arrives at the ED with a laceration; vitals are obtained at triage, pain 10/10.",
+    "chief_complaint": "laceration",
+    "age": 20,
+    "sex": "F",
+    "vitals": {
+      "temperature": 98.5,
+      "heartrate": 79,
+      "resprate": 19,
+      "o2sat": 99,
+      "sbp": 153,
+      "dbp": 88,
+      "pain": 10
+    },
+    "acuity": 5,
+    "outcome": "discharged",
+    "outcome_detail": "Discharged with standard aftercare guidance after workup.",
+    "truth": {
+      "subpopulation": "well"
+    }
+  },
+  {
+    "case_id": "well-02",
+    "presentation": "75-year-old man presents to triage reporting ear pain. Pain is rated 9/10 at intake.",
+    "chief_complaint": "pain, ear",
+    "age": 75,
+    "sex": "M",
+    "vitals": {
+      "temperature": 96.9,
+      "heartrate": 83,
+      "resprate": 18,
+      "o2sat": 100,
+      "sbp": 147,
+      "dbp": 83,
+      "pain": 9
+    },
+    "acuity": 4,
+    "outcome": "discharged",
+    "outcome_detail": "Cleared for discharge the same day, advised to follow up with primary care if symptoms persist.",
+    "truth": {
+      "subpopulation": "well"
+    }
+  },
+  {
+    "case_id": "well-03",
+    "presentation": "42-year-old man is evaluated at triage for a motor vehicle collision and finger pain; pain is documented as 8/10.",
+    "chief_complaint": "mvc, finger, pain",
+    "age": 42,
+    "sex": "M",
+    "vitals": {
+      "temperature": 97.6,
+      "heartrate": 99,
+      "resprate": 18,
+      "o2sat": 99,
+      "sbp": 127,
+      "dbp": 96,
+      "pain": 8
+    },
+    "acuity": 4,
+    "outcome": "discharged",
+    "outcome_detail": "Cleared for discharge the same day, advised to follow up with primary care if symptoms persist.",
+    "truth": {
+      "subpopulation": "well"
+    }
+  },
+  {
+    "case_id": "well-04",
+    "presentation": "Triage note: 68-year-old woman, ankle pain. Pain 4/10 on the intake scale.",
+    "chief_complaint": "ankle, pain",
+    "age": 68,
+    "sex": "F",
+    "vitals": {
+      "temperature": 97.7,
+      "heartrate": 92,
+      "resprate": 12,
+      "o2sat": 100,
+      "sbp": 153,
+      "dbp": 86,
+      "pain": 4
+    },
+    "acuity": 4,
+    "outcome": "discharged",
+    "outcome_detail": "Evaluated and discharged the same visit with routine follow-up instructions.",
+    "truth": {
+      "subpopulation": "well"
+    }
+  },
+  {
+    "case_id": "well-05",
+    "presentation": "Triage note: 25-year-old woman, lower back pain. Pain 0/10 on the intake scale.",
+    "chief_complaint": "lower, back",
+    "age": 25,
+    "sex": "F",
+    "vitals": {
+      "temperature": 96.0,
+      "heartrate": 71,
+      "resprate": 15,
+      "o2sat": 100,
+      "sbp": 126,
+      "dbp": 73,
+      "pain": 0
+    },
+    "acuity": 5,
+    "outcome": "discharged",
+    "outcome_detail": "Evaluated and discharged the same visit with routine follow-up instructions.",
+    "truth": {
+      "subpopulation": "well"
+    }
+  },
+  {
+    "case_id": "well-06",
+    "presentation": "38-year-old woman checks in at triage citing a recent fall, with a pain score of 0/10.",
+    "chief_complaint": "pain, fall",
+    "age": 38,
+    "sex": "F",
+    "vitals": {
+      "temperature": 97.6,
+      "heartrate": 61,
+      "resprate": 15,
+      "o2sat": 99,
+      "sbp": 99,
+      "dbp": 53,
+      "pain": 0
+    },
+    "acuity": 5,
+    "outcome": "discharged",
+    "outcome_detail": "Cleared for discharge the same day, advised to follow up with primary care if symptoms persist.",
+    "truth": {
+      "subpopulation": "well"
+    }
+  },
+  {
+    "case_id": "well-07",
+    "presentation": "32-year-old man presents to triage reporting a recent fall. Pain is rated 5/10 at intake.",
+    "chief_complaint": "pain, fall",
+    "age": 32,
+    "sex": "M",
+    "vitals": {
+      "temperature": 98.7,
+      "heartrate": 75,
+      "resprate": 19,
+      "o2sat": 99,
+      "sbp": 126,
+      "dbp": 96,
+      "pain": 5
+    },
+    "acuity": 4,
+    "outcome": "discharged",
+    "outcome_detail": "Discharged with standard aftercare guidance after workup.",
+    "truth": {
+      "subpopulation": "well"
+    }
+  },
+  {
+    "case_id": "well-08",
+    "presentation": "49-year-old woman presents to triage reporting a laceration. Pain is rated 6/10 at intake.",
+    "chief_complaint": "laceration, eval",
+    "age": 49,
+    "sex": "F",
+    "vitals": {
+      "temperature": 97.6,
+      "heartrate": 95,
+      "resprate": 17,
+      "o2sat": 96,
+      "sbp": 127,
+      "dbp": 81,
+      "pain": 6
+    },
+    "acuity": 4,
+    "outcome": "discharged",
+    "outcome_detail": "No acute findings on further evaluation; discharged home in stable condition.",
+    "truth": {
+      "subpopulation": "well"
+    }
+  }
+]
