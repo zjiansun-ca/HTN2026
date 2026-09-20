@@ -13,7 +13,7 @@ from fastapi import BackgroundTasks, FastAPI, HTTPException
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
 
-from backend import db, explain, observability
+from backend import db, explain, observability, risk_percentile
 from backend.scoring import _score_case
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -108,6 +108,10 @@ def reveal(req: RevealRequest, background_tasks: BackgroundTasks):
         "judge_call": judge_call,
         "model_flag": model_flag,
         "risk_rank": round(risk_rank, 4),
+        # percentile of risk_rank within the held-out non-urgent MIMIC population —
+        # presentation only, derived from data_prep/compute_risk_percentiles.py's
+        # honest distribution, never influences model_flag above
+        "risk_percentile": risk_percentile.percentile_for(risk_rank),
         "top_features": top_features,
         "outcome": case["outcome"],
         "outcome_detail": case["outcome_detail"],

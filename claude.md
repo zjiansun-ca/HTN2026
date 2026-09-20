@@ -50,20 +50,28 @@ the user's credentialing.
   vital distribution, not an exact resample of it — documented, not a defect.
   (c) some fitted coefficient signs are clinically counterintuitive (e.g. low SBP reading as
   protective in places) — a known class-imbalance/retrospective-data confound, not a scoring bug.
-- Gemini is NOT used anywhere in the current pipeline (deferred to the Saturday patient-voice
-  stretch feature — prize claimed there, not here). The `google-genai` SDK setup and
-  `GEMINI_API_KEY` in `.env` are left in place for that feature; do not remove them. Note: this
-  currently conflicts with the OUT OF SCOPE section below banning voice/speech — reconcile before
-  building that feature.
+- **Gemini reconciliation (built, guarded):** `backend/explain.py` + `POST /explain` add an
+  OPTIONAL plain-language paraphrase of the flag, kept strictly out of the decision/explanation
+  path this section otherwise protects. The faithful reason (contribution bars, `backend/scoring.py`,
+  TEMPLATE-rendered) remains the sole source of truth and is computed and shown with zero LLM
+  involvement, exactly as below. Gemini is called separately, after the flag/score already exist,
+  sees ONLY the already-computed top_features (name/kind/direction + shown vital values) — never
+  chief-complaint text, presentation, outcome, or a real record — and is instructed to add no new
+  facts. Any failure/timeout/quota/absent-key silently returns `null`; the bars alone remain the
+  reveal either way. This does not reopen the "no LLM in the decision path" rule below — Gemini
+  can only restate a decision already made, never make or explain-from-scratch one. The Saturday
+  patient-voice stretch feature (voice/speech) is a separate, still-undone idea and still conflicts
+  with OUT OF SCOPE below; reconcile that one separately if it's ever built.
 
 ## Architecture (all local at demo time)
 Case (synthetic) ──► [Flagger] risk → flag (vs fixed p20) ──► faithful reason (top features)
 Judge's binary call ──► compare to model + real outcome ──► log event ──► leaderboard
 - Faithful reason = the model's real top contributing features (coef × value), rendered by
-  TEMPLATE. No LLM in the explanation or decision path.
+  TEMPLATE. No LLM in the flag/score decision, and none in the faithful reason itself — that stays
+  template-rendered and is the reveal's source of truth. An optional Gemini paraphrase of that
+  already-computed reason exists on top (`/explain`), strictly guarded; see STATUS above.
 - The case bank is built entirely deterministically (seeded RNG + templates) — no LLM anywhere in
-  this pipeline currently. Gemini is deferred to the Saturday patient-voice stretch feature; see
-  STATUS above.
+  bank generation.
 
 ## cases.json schema
 Every case MUST have: `case_id, presentation, chief_complaint, vitals {temperature, heartrate,
@@ -107,5 +115,9 @@ any of these renders as `undefined` in the frontend.
 
 ## OUT OF SCOPE — do not build
 - Voice / speech / live translation. GPTZero. Patient routing. Wait-time simulation.
-- Any LLM in the explanation or decision path. Full CTAS 1–5 assignment (judge call is binary).
-- Any "AI replaces the nurse" framing. Auth, accounts, deploy infra.
+- Any LLM in the flag decision itself, or generating the faithful reason from scratch (that stays
+  template-rendered off the model's real coefficients). The one built exception — an optional
+  Gemini paraphrase of an already-computed reason, guarded so it can never influence or replace it
+  — is reconciled in STATUS above; do not widen it beyond that without new sign-off.
+- Full CTAS 1–5 assignment (judge call is binary). Any "AI replaces the nurse" framing.
+- Auth, accounts, deploy infra.
